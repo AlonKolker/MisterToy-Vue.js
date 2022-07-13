@@ -2,7 +2,7 @@ import { toyService } from "../../services/toy-service.js"
 
 export default {
   state: {
-    toys: null,
+    toys: [],
     lastRemovedToy: null,
   },
   getters: {
@@ -32,8 +32,9 @@ export default {
     },
   },
   actions: {
-    loadToys({ commit }) {
-      toyService.query().then((toys) => {
+    loadToys({ commit },{filterBy}) {
+      // if(!filterBy) filterBy = {}
+      toyService.query(filterBy).then((toys) => {
         commit({ type: "setToys", toys })
       })
     },

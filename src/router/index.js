@@ -3,7 +3,8 @@ import Home from '../views/Home.vue'
 import ToysApp from '../views/toys-app.vue'
 import toyDetails from '../views/toy-details.vue'
 import toyEdit from '../views/toy-edit.vue'
-
+import toyChart from '../views/toy-chart.vue'
+import about from '../views/about.vue'
 
 
 const router = createRouter({
@@ -29,6 +30,16 @@ const router = createRouter({
       path: '/toys/edit/:_id?',
       name: 'toy-edit',
       component: toyEdit,
+    },
+    {
+      path: '/toyChart',
+      name: 'toy-chart',
+      component: toyChart
+    },
+       {
+      path: '/about',
+      name: 'about',
+      component: about
     },
   ]
 })

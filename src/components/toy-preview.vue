@@ -11,7 +11,8 @@ export default {
   props: {
     toy: Object,
   },
-  components: {},
+emits:['removeToy'],
+components: {},
   methods: {
     goToDetail() {
       this.$router.push(`/toys/${this.toy._id}`)

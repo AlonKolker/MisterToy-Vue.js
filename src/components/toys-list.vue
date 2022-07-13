@@ -15,7 +15,9 @@ export default {
       type: Array,
       required: true,
     },
+   
   },
+  emits:['removeToy'],
   components: {
     toyPreview,
   },
