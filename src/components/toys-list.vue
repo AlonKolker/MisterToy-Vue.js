@@ -1,7 +1,9 @@
-<template>
+<template >
+    
+    <button @click="goToEdit" class="btn btn-danger-text add-btn  ">Add a new Toy</button>
 
-  <ul class="toy-list">
-    <toy-preview  @removeToy="removeToy" v-for="toy in toys" :toy="toy" :key="toy._id" />
+  <ul class="toy-list ">
+    <toy-preview  @removeToy="removeToy" v-for="toy in toys" :toy="toy" :key="toy._id"  />
   </ul>
 </template>
 
@@ -17,7 +19,7 @@ export default {
     },
    
   },
-  emits:['removeToy'],
+  emits:['removeToy','newToy'],
   components: {
     toyPreview,
   },
@@ -25,6 +27,10 @@ export default {
     removeToy(toyId) {
       this.$emit('removeToy', toyId)
     },
+    goToEdit(){
+            this.$emit('newToy')
+
+    }
   },
 }
 </script>

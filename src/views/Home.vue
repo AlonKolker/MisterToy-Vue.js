@@ -1,5 +1,6 @@
 <template>
-  <h1>Home Page</h1>
+  <h1 class="home-header">Lets find your new Toy!</h1>
+  <img class="home-img" src="../styles/img/happyKids.png" alt="">
 </template>
 
 <script>

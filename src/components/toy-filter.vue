@@ -1,7 +1,7 @@
 
 
 <template>
-  <section class="toy-filter">
+  <section class="toy-filter flex center">
     <el-input
       v-model="filterBy.name"
       @input="setFilter"

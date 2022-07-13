@@ -1,0 +1,45 @@
+.toy-prev {
+  background-color: rgb(238, 229, 57);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: em(30px);
+  padding: em(15px);
+  
+}
+
+.prev-options {
+  display: flex;
+  flex-direction: row;
+  margin-top: em(10px);
+}
+
+.in-stock {
+  color: green;
+  width: auto;
+}
+.missing-stock {
+  color: red;
+  width: auto;
+}
+
+.label {
+margin:1px ;
+width: auto;
+border-radius: em(6px);
+}
+.labels{
+  margin-top: em(10px);
+  margin:0 0 20px 0; ;
+
+
+  .label {
+    font-size: 14px;
+    padding: 3px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    border-radius: em(6px);
+    }
+  
+}

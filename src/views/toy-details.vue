@@ -4,11 +4,11 @@
       <p><span class="">ID: </span> {{ toy._id }}</p>
       <p><span class="">Name: </span> {{ toy.name }}</p>
       <p><span class="">Price: </span> {{ toy.price }} $</p>
-      <ul v-for="label in toy.lables" :key="toy.id">
-        <li>{{ label }}</li>
+      <p><span class="">Status: </span>{{ toy.inStock? 'In stock': 'Out of stock'}}</p>
+      <div>Reviews:</div>
+      <ul v-for="review in toy.reviews" :key="toy.id">
+        <li>{{ review }}</li>
       </ul>
-      <p><span class="">Lables: </span>{{ toy.inStock }}</p>
-      <p v-if="review">{{ getReviews }}</p>
     </article>
     <button @click="goBack" class="btn btn-primary">go back</button>
   </section>
@@ -26,8 +26,9 @@ export default {
     }
   },
   created() {
-    const { id } = this.$route.params
-    toyService.getById(id).then((toy) => {
+    const { _id } = this.$route.params
+    // console.log()
+    toyService.getById(_id).then((toy) => {
       this.toy = toy
     })
   },
@@ -37,10 +38,7 @@ export default {
     },
   },
   computed: {
-    getReviews() {
-        const review = { rev: { name: "puki", review: "awsome toy!" } } // return storageService.get(KEY, toyId)
 
-    },
   },
 }
 </script>

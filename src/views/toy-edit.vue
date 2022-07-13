@@ -30,7 +30,7 @@ export default {
   },
   created() {
     const { _id } = this.$route.params
-
+      console.log('id')
     if (_id) {
       toyService.getById(_id).then((toy) => {
         this.toyToEdit = toy

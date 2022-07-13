@@ -6,7 +6,7 @@ import axios from 'axios'
 const KEY = "toys_db"
 // const API = '//localhost:3030/api/toys/'
 // AKA BASE URL
-const API = (process.env.NODE_ENV !== 'development') ? '/api/toys' : '//localhost:3030/api/toys';
+const API = (process.env.NODE_ENV !== 'development') ? '/api/toys/' : '//localhost:3030/api/toys/';
 // _createToys()
 
 export const toyService = {
@@ -24,7 +24,8 @@ function query(filterBy) {
 }
 
 function getById(toyId) {
-   return axios.get(API + toyId).then((res) => res.data);
+  console.log(toyId)
+   return axios.get(API + toyId).then((res) => res.data).catch(err=> console.log('errr'));
   // return storageService.get(KEY, toyId)
 }
 
@@ -42,7 +43,7 @@ function save(toy) {
   } else {
 
     console.log('save new');
-    return axios.post(API, toy).then((res) => res.data);
+    return axios.post(API, toy).then((res) => res.data).catch(err=>console.log('err'));
   }
   // return storageService.post(KEY, toy)
 }
