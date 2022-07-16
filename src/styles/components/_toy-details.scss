@@ -1,0 +1,31 @@
+.toy-details {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+  width: 100%;
+}
+
+.toy-reviews {
+  border: 1px solid black;
+}
+.toy-main-content {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  list-style-type: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  padding: 20px;
+  height: auto;
+  li {
+    list-style-type: none;
+  }
+  ul {
+    padding: 0;
+  }
+}

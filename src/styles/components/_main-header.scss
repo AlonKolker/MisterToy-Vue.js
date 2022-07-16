@@ -1,6 +1,6 @@
 .header-conteiner{
 // height: 10vh;
-background-color: lightcyan;
+background-color: $clr6;
 }
 
 .logo-img{
@@ -8,5 +8,11 @@ background-color: lightcyan;
     height: 150px;
 }
 .logo-name{
-    color: black;
+    color: $clr2;
+}
+.mark{
+color: #827081;
+  &:hover{
+    text-decoration: underline;
+  }  
 }

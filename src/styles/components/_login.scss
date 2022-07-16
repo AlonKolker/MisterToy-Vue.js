@@ -1,0 +1,20 @@
+.form-container{
+  justify-content: center;
+
+}
+.login-container {
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+  margin: em(100px);
+  width: 300px;
+  height: 200px;
+  background-color: $clr6;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  .login-pass {
+    margin-top: 10px;
+  }
+}

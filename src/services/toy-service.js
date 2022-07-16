@@ -1,12 +1,15 @@
 import { storageService } from "./storage-service.js"
 import { utilService } from "./util-service.js"
-import axios from 'axios'
-
+import Axios from "axios"
+const axios = Axios.create({ withCredentials: true })
 
 const KEY = "toys_db"
-// const API = '//localhost:3030/api/toys/'
+// const API = '//localhost:3030/api/toy/'
 // AKA BASE URL
-const API = (process.env.NODE_ENV !== 'development') ? '/api/toys/' : '//localhost:3030/api/toys/';
+const API =
+  process.env.NODE_ENV !== "development"
+    ? "/api/toy/"
+    : "//localhost:3030/api/toy/"
 // _createToys()
 
 export const toyService = {
@@ -17,34 +20,66 @@ export const toyService = {
   getEmptyToy,
 }
 
-function query(filterBy) {
-  return axios.get(API,{params:filterBy}).then((res) => res.data)
-  // return storageService.query(TOY_KEY);
-
-}
-
-function getById(toyId) {
-  console.log(toyId)
-   return axios.get(API + toyId).then((res) => res.data).catch(err=> console.log('errr'));
-  // return storageService.get(KEY, toyId)
-}
-
-function remove(toyId) {
-    return axios.delete(API + toyId).then((res) => res.data);
-  // return storageService.remove(KEY, toyId)
-}
-
-function save(toy) {
-  console.log('save func service',toy);
-
-   if (toy._id) {
-    console.log('save if have id');
-    return axios.put(API + toy._id, toy).then((res) => res.data);
-  } else {
-
-    console.log('save new');
-    return axios.post(API, toy).then((res) => res.data).catch(err=>console.log('err'));
+async function query(filterBy) {
+  try {
+    const res = await axios.get(API, { params: filterBy })
+    const toys = res.data
+    return toys
+  } catch (err) {
+    throw err
   }
+
+  //   return axios.get(API,{params:filterBy}).then((res) => res.data)
+}
+
+async function getById(toyId) {
+  // console.log(toyId)
+  try {
+    const res = await axios.get(API + toyId)
+    const toy = res.data
+    return toy
+  } catch (err) {
+    throw err
+  }
+  //  return axios.get(API + toyId).then((res) => res.data).catch(err=> console.log('errr'));
+}
+
+async function remove(toyId) {
+  try {
+    const res = await axios.delete(API + toyId)
+    const toys = res.data
+    return toys
+  } catch (err) {
+    throw err
+  }
+  // return axios.delete(API + toyId).then((res) => res.data);
+}
+
+async function save(toy) {
+  let updatedToy 
+  try {
+    if (toy._id) {
+      const res = await axios.put(API + toy._id, toy)
+      updatedToy = res.data
+    } else {
+      const res = await axios.post(API, toy)
+      updatedToy = res.data
+      
+    }
+    console.log('SERV',updatedToy);
+    return updatedToy
+  } catch (err) {
+    throw err
+  }
+
+  //  if (toy._id) {
+  //   console.log('save if have id');
+  //   return axios.put(API + toy._id, toy).then((res) => res.data);
+  // } else {
+
+  //   console.log('save new');
+  //   return axios.post(API, toy).then((res) => res.data).catch(err=>console.log('err'));
+  // }
   // return storageService.post(KEY, toy)
 }
 
@@ -53,50 +88,8 @@ function getEmptyToy() {
     // _id: utilService.makeId(),
     name: "",
     price: 0,
-    labels: ["Doll", "Battery Powered", "Baby"],
+    labels: ["Doll", "Battery powered", "Baby"],
     createdAt: Date.now(),
     inStock: true,
   }
 }
-// const labels = [
-//   "On wheels",
-//   "Box game",
-//   "Art",
-//   "Baby",
-//   "Doll",
-//   "Puzzle",
-//   "Outdoor",
-// ]
-// function _createToys() {
-//   let toys = utilService.loadFromStorage(KEY)
-//   if (!toys || !toys.length) {
-//     toys = [
-//       {
-//         _id: utilService.makeId(),
-//         name: "Talking Doll",
-//         lables: ["On wheels", "Box game", "Art"],
-//         price: 980,
-//         createdAt: Date.now(),
-//         inStock: true,
-//       },
-//       {
-//         _id: utilService.makeId(),
-//         name: "Hulk",
-//         lables: ["Baby", "Outdoor", "Art"],
-//         price: 500,
-//         createdAt: Date.now(),
-//         inStock: true,
-//       },
-//       {
-//         _id: utilService.makeId(),
-//         name: "Thor",
-//         lables: ["Puzzle", "Box game", "Baby"],
-//         price: 305,
-//         createdAt: Date.now(),
-//         inStock: true,
-//       },
-//     ]
-//     utilService.saveToStorage(KEY, toys)
-//   }
-//   return toys
-// }

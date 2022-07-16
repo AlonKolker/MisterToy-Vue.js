@@ -1,12 +1,12 @@
 
 // COLOR PALETTE
-$clr1: #FF521C;
+$clr1: #feeafa;//backround
 $clr2: #000;
-$clr3: #fff;
+$clr3: #fff;//darken btn
 $clr4: darken($clr3, 40%);
-$clr5: #2d2d2d;
-$clr6:lightcyan;
-$clr7:rgba(224, 255, 233, 0.889);
+$clr5: #cbc0d3;//btn bgc
+$clr6:#dee2ff;//btn hover+heder
+$clr7:#a1b5e3;//color btn hover
 
 // LAYOUT
 $layoutPadding: 20px;

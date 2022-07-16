@@ -1,10 +1,28 @@
-.toy-edit{
-    height: 400px;
-    width: 300px;
+.edit-conteiner {
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+}
+.toy-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  width: 300px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+padding: 20px;
+margin: 100px 0 150px 0;
+
+  .form-control {
     display: flex;
-    // justify-content: center;
-    // justify-items: center;
+    flex-direction: column;
     align-items: center;
-    // align-content: center;
-    margin:  auto;
+    justify-content: center;
+  }
+  .edit-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

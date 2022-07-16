@@ -90,6 +90,7 @@
   transition: background-color 0.2s;
   margin: em(6px);
       justify-content: center;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
   @if $type == regular {
     background-color: red;
@@ -108,11 +109,11 @@
       color: $clr3;
     }
   } @else if $type == light {
-    background-color: $clr1;
+    background-color: $clr5;
     color: $clr2;
     &:hover {
-      background-color: $clr1;
-      color: $clr3;
+      background-color: $clr6;
+      color: $clr7;
     }
   }
 }

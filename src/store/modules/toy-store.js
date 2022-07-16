@@ -9,7 +9,7 @@ export default {
     toys(state) {
       return state.toys
     },
-  },
+     },
   mutations: {
     setToys(state, { toys }) {
       state.toys = toys
@@ -30,31 +30,38 @@ export default {
       if (idx !== -1) state.toys.splice(idx, 1, toy)
       else state.toys.push(toy)
     },
+
   },
   actions: {
-    loadToys({ commit },{filterBy}) {
+    async loadToys({ commit }, { filterBy }) {
       // if(!filterBy) filterBy = {}
-      toyService.query(filterBy).then((toys) => {
-        commit({ type: "setToys", toys })
-      })
+      try {
+        const loadedToys = await toyService.query(filterBy)
+        commit({ type: "setToys", toys: loadedToys })
+      } catch (err) {
+        throw err
+      }
     },
-    removeToy({ commit }, payload) {
+    async removeToy({ commit , rootGetters }, payload) {
+      let currUser = rootGetters.loggedInUser//goes to the getter tree
+      if(currUser.isAdmin === false) return
       commit(payload) //check it out!!!
-      return toyService
-        .remove(payload.toyId)
-        .then(() => {
-          commit({ type: "clearRemoveToy" })
-        })
-        .catch((err) => {
-          commit({ type: "undoRemoveToy" })
-          throw err
-        })
+      try {
+      let temp =   await toyService.remove(payload.toyId)
+            commit({ type: "clearRemoveToy" })
+       } catch (err) {
+            commit({ type: "undoRemoveToy" })
+            throw err
+        }
+        
     },
-    saveToy({ commit }, { toy }) {
-      console.log(toy);
-      toyService.save(toy).then((toy) => {
-        commit({ type: 'saveToy', toy })
-      })
+    async saveToy({ commit }, { toy }) {
+      try{ 
+        await toyService.save(toy)
+        commit({ type: "saveToy", toy })
+      } catch(err){
+        throw err
+      }
     },
   },
 }

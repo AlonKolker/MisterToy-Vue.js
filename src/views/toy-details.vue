@@ -1,16 +1,16 @@
 <template>
   <section v-if="toy" class="toy-details">
-    <article>
+    <article class ="toy-main-content flex flex-column">
       <p><span class="">ID: </span> {{ toy._id }}</p>
       <p><span class="">Name: </span> {{ toy.name }}</p>
       <p><span class="">Price: </span> {{ toy.price }} $</p>
       <p><span class="">Status: </span>{{ toy.inStock? 'In stock': 'Out of stock'}}</p>
-      <div>Reviews:</div>
-      <ul v-for="review in toy.reviews" :key="toy.id">
+      <div>Reviews:</div> {{toy.reviews? '':'no reviews yet, be the first to comment!'}}
+      <ul v-for="review in toy.reviews" :key="toy.id" class="toy-reviews">
         <li>{{ review }}</li>
       </ul>
     </article>
-    <button @click="goBack" class="btn btn-primary">go back</button>
+    <button @click="goBack" class="btn btn-danger-text add-btn">go back</button>
   </section>
 </template>
 
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/toys")
+      this.$router.push("/toy")
     },
   },
   computed: {
